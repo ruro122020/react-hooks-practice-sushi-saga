@@ -25,11 +25,11 @@ function App() {
   useEffect(()=>{
     fetch('http://localhost:3001/sushis')
     .then(res=> res.json())
-    .then(sushis => console.log(sushis))
+    .then(sushis => setSushisList(sushis))
   }, [])
   return (
     <div className="app">
-      <SushiContainer />
+      <SushiContainer sushisList={sushsList}/>
       <Table />
     </div>
   );
