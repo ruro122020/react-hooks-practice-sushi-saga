@@ -14,9 +14,9 @@ In the Sushi Component:
   -use the ateSushi state to determine whether the image will be rendered or not
   -create a callback function to update the ateSushi state
 
-5. We need to make money! Whenever a sushi is eaten, customers should be automatically charged! Based on a budget decided by you, the developer, the amount of money remaining should go down by the cost of the sushi that was eaten. There is a spot to display this number in the Table component.
+5. We need to make money! Whenever a sushi is eaten, customers should be automatically charged! Based on a budget decided by you, the developer, the amount of money remaining should go down by the cost of the sushi that was eaten. There is a spot to display this number in the Table component.(done)
 
-6. No free meals! Customers cannot eat any sushi that exceeds the amount of money remaining in their balance.
+6. No free meals! Customers cannot eat any sushi that exceeds the amount of money remaining in their balance.(done)
 */
 import React,{useState, useEffect} from "react";
 import SushiContainer from "./SushiContainer";
@@ -27,15 +27,18 @@ const API = "http://localhost:3001/sushis";
 function App() {
   const [sushsList, setSushisList] = useState([])
   const [plates, setPlates] = useState([])
+  const [balance, setBalance] = useState(100)
   useEffect(()=>{
     fetch('http://localhost:3001/sushis')
     .then(res=> res.json())
     .then(sushis => setSushisList(sushis))
   }, [])
+
+ 
   return (
     <div className="app">
-      <SushiContainer sushisList={sushsList} setPlates={setPlates} />
-      <Table plates={plates}/>
+      <SushiContainer sushisList={sushsList} setPlates={setPlates} balance={balance} setBalance={setBalance}/>
+      <Table plates={plates} balance={balance}/>
     </div>
   );
 }

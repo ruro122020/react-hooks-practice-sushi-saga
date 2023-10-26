@@ -7,13 +7,17 @@
 
 import React, {useState} from "react";
 
-function Sushi({sushi, setPlates}) {
+function Sushi({sushi, setPlates, balance, setBalance}) {
   const {id, img_url, name, price} =sushi
   const [ateSushi, setAteSushi] = useState(false)
   
   const handleAteSushiClick=()=>{
-    setPlates(prevPlates => [...prevPlates, sushi])
-    setAteSushi(prevAteSushi => !prevAteSushi)
+    if(sushi.price < balance){
+      const newBalance = balance - sushi.price
+      setBalance(newBalance)
+      setPlates(prevPlates => [...prevPlates, sushi])
+      setAteSushi(prevAteSushi => !prevAteSushi)
+    }
   }
   return (
     <div className="sushi">
