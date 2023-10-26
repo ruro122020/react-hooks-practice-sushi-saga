@@ -11,15 +11,14 @@ To Render 4 sushi's at a time:
   In the MoreButton component:
   -call the renderMore function on the onClick event
  */
-function SushiContainer({sushisList}) {
+function SushiContainer({sushisList, setPlates}) {
   const [count, setCount] = useState(0)
 
   const handleMoreSushi =()=>{
     setCount(prevCount => prevCount + 4)
   }
   const splitSushis = sushisList.slice(count, count + 4)
- 
-  const displaySushis = splitSushis.map(sushi => <Sushi key={sushi.id} sushi={sushi}/> )
+  const displaySushis = splitSushis.map(sushi => <Sushi key={sushi.id} sushi={sushi} setPlates={setPlates}/> )
   return (
     <div className="belt">
       {/* Render Sushi components here! */}
