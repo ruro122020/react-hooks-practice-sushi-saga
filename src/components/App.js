@@ -11,7 +11,7 @@ Core Deliverable are done.
 
 Advanced Deliverables:
 1.Sushi Wallet! Add a form for customers to add more money to their balance.
-2. Full rotation! When the end of the line of sushi is reached, the conveyor belt should start from the beginning. Sushi that have already been eaten should remain eaten. It would be creepy if they reappeared!
+2. Full rotation! When the end of the line of sushi is reached, the conveyor belt should start from the beginning. Sushi that have already been eaten should remain eaten. It would be creepy if they reappeared! (done)
 */
 import React, { useState, useEffect } from "react";
 import SushiContainer from "./SushiContainer";
@@ -26,13 +26,31 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:3001/sushis')
       .then(res => res.json())
-      .then(sushis => setSushisList(sushis))
+      .then(sushis => {
+        const newSushiList = sushis.map(sushi => ({ ...sushi, ateSushi: false }))
+        setSushisList(newSushiList)
+      })
   }, [])
 
-
+  const handleUpdatedSushi = (updatedSushi) => {
+    const newUpdatedSushi = sushsList.map(sushi => {
+      if (sushi.id === updatedSushi.id) {
+        return updatedSushi
+      } else {
+        return sushi
+      }
+    })
+    setSushisList(newUpdatedSushi)
+  }
   return (
     <div className="app">
-      <SushiContainer sushisList={sushsList} setPlates={setPlates} balance={balance} setBalance={setBalance} />
+      <SushiContainer
+        sushisList={sushsList}
+        setPlates={setPlates}
+        balance={balance}
+        setBalance={setBalance}
+        onUpdateSushi={handleUpdatedSushi}
+      />
       <Table plates={plates} balance={balance} />
     </div>
   );
