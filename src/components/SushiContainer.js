@@ -14,7 +14,6 @@ function SushiContainer({ sushisList, setPlates, balance, setBalance, onUpdateSu
       setCount(prevCount => prevCount + 4)
     }
   }
-  console.log(count)
 
   const displaySushis = splitSushis.map(sushi => <Sushi
     key={sushi.id}

@@ -16,6 +16,7 @@ Advanced Deliverables:
 import React, { useState, useEffect } from "react";
 import SushiContainer from "./SushiContainer";
 import Table from "./Table";
+import WalletForm from "./WalletForm";
 
 const API = "http://localhost:3001/sushis";
 
@@ -44,6 +45,7 @@ function App() {
   }
   return (
     <div className="app">
+      <WalletForm setBalance={setBalance} />
       <SushiContainer
         sushisList={sushsList}
         setPlates={setPlates}
