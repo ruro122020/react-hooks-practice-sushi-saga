@@ -6,7 +6,6 @@ function Table({ plates = [], balance }) {
     <div key={index} className="empty-plate" style={{ top: -7 * index }} />
   ));
 
-
   return (
     <>
       <h1 className="remaining">

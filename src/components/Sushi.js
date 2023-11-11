@@ -1,18 +1,11 @@
-/*
-  -create a ateSushi state and set it to false
-  -set ateSushi state to true when a plate is clicked on
-  -use the ateSushi state to determine whether the image will be rendered or not
-  -create a callback function to update the ateSushi state
-*/
+import React, { useState } from "react";
 
-import React, {useState} from "react";
-
-function Sushi({sushi, setPlates, balance, setBalance}) {
-  const {id, img_url, name, price} =sushi
+function Sushi({ sushi, setPlates, balance, setBalance }) {
+  const { id, img_url, name, price } = sushi
   const [ateSushi, setAteSushi] = useState(false)
-  
-  const handleAteSushiClick=()=>{
-    if(sushi.price < balance){
+
+  const handleAteSushiClick = () => {
+    if (sushi.price < balance) {
       const newBalance = balance - sushi.price
       setBalance(newBalance)
       setPlates(prevPlates => [...prevPlates, sushi])
